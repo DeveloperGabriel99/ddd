@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ficha de Personagem - D&D 5e (Layout tipo oficial)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="controls">
+    <button class="btn" onclick="window.print()">Imprimir / Salvar PDF</button>
+    <button class="btn alt" onclick="clearAll()">Limpar Tudo</button>
+  </div>
+
+  <!-- PÁGINA 1 -->
+  <section class="page">
+    <div class="banner">
+      <div class="name">
+        <label>Nome do Personagem</label>
+        <input id="char-name" type="text" />
+      </div>
+      <div class="brand">
+        <div class="slot">LOGO / MOLDURA SVG (pendente)</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- COLUNA 1 -->
+      <div class="col1">
+        <div class="section">
+          <div class="label">Classe & Nível — Antecedente — Jogador</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px">
+            <input id="class-level" type="text" placeholder="Bardo 1"/>
+            <input id="background" type="text" placeholder="Artista"/>
+            <input id="player" type="text" placeholder="Nome do Jogador"/>
+          </div>
+          <div class="label" style="margin-top:6px">Raça — Tendência — XP</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px">
+            <input id="race" type="text" placeholder="Gnomo"/>
+            <input id="alignment" type="text" placeholder="Neutro"/>
+            <input id="xp" type="number" class="mono" placeholder="0"/>
+          </div>
+        </div>
+
+        <div class="abilitiesV">
+          <div class="abilityV" data-ability="for"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Força</div><div class="modBox" data-mod>+0</div></div>
+          <div class="abilityV" data-ability="des"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Destreza</div><div class="modBox" data-mod>+0</div></div>
+          <div class="abilityV" data-ability="con"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Constituição</div><div class="modBox" data-mod>+0</div></div>
+          <div class="abilityV" data-ability="int"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Inteligência</div><div class="modBox" data-mod>+0</div></div>
+          <div class="abilityV" data-ability="sab"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Sabedoria</div><div class="modBox" data-mod>+0</div></div>
+          <div class="abilityV" data-ability="car"><div class="scoreCircle"><input class="score mono" type="number" min="1" max="30" value="10" style="width:40px; text-align:center; border:none"></div><div class="title">Carisma</div><div class="modBox" data-mod>+0</div></div>
+        </div>
+
+        <div class="insp-prof">
+          <div class="chip"><div class="label">Inspiração</div><div class="circle"> <input id="inspiration" class="mono" type="number" value="0" style="width:28px; text-align:center; border:none"> </div></div>
+          <div class="chip"><div class="label">Bônus de Proficiência</div><div class="circle"> <input id="prof-bonus" class="mono" type="number" value="2" style="width:28px; text-align:center; border:none"> </div></div>
+        </div>
+
+        <div class="saves">
+          <div class="label" style="margin-bottom:4px">Testes de Resistência</div>
+          <div class="section">
+            <div class="skill"><input type="checkbox" data-save="for"> Força <span class="val mono" data-save-mod="for">+0</span></div>
+            <div class="skill"><input type="checkbox" data-save="des"> Destreza <span class="val mono" data-save-mod="des">+0</span></div>
+            <div class="skill"><input type="checkbox" data-save="con"> Constituição <span class="val mono" data-save-mod="con">+0</span></div>
+            <div class="skill"><input type="checkbox" data-save="int"> Inteligência <span class="val mono" data-save-mod="int">+0</span></div>
+            <div class="skill"><input type="checkbox" data-save="sab"> Sabedoria <span class="val mono" data-save-mod="sab">+0</span></div>
+            <div class="skill"><input type="checkbox" data-save="car"> Carisma <span class="val mono" data-save-mod="car">+0</span></div>
+          </div>
+        </div>
+
+        <div class="skills">
+          <div class="label" style="margin-bottom:4px">Perícias</div>
+          <div class="skillsList" id="skills"></div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px; margin-top:6px">
+            <div class="section"><div class="label">Percepção Passiva</div><input id="passive-perception" class="mono" type="number" value="10"></div>
+            <div class="section"><div class="label">Intuição Passiva</div><input id="passive-insight" class="mono" type="number" value="10"></div>
+            <div class="section"><div class="label">Investigação Passiva</div><input id="passive-investigation" class="mono" type="number" value="10"></div>
+          </div>
+        </div>
+
+        <div class="section"><div class="label">Outras Profic. & Idiomas</div><textarea id="proficiencies"></textarea></div>
+      </div>
+
+      <!-- COLUNA 2 -->
+      <div class="col2">
+        <div class="top3">
+          <div class="panel" style="text-align:center"><div class="label">Classe de Armadura</div><div class="circleBig"><input id="ac" type="number" class="mono" style="width:40px; text-align:center; border:none"></div></div>
+          <div class="panel" style="text-align:center"><div class="label">Iniciativa</div><div class="circleBig"><input id="initiative" type="number" class="mono" style="width:40px; text-align:center; border:none"></div></div>
+          <div class="panel" style="text-align:center"><div class="label">Deslocamento</div><div class="circleBig" style="width:72px"><input id="speed" type="text" class="mono" placeholder="7,5 m" style="width:56px; text-align:center; border:none"></div></div>
+        </div>
+
+        <div class="hp-saves">
+          <div class="subpanel">
+            <div class="label">Pontos de Vida (Máx.)</div>
+            <input id="hp-max" type="number" class="mono">
+            <div class="label" style="margin-top:6px">PV Atuais</div>
+            <input id="hp-current" type="number" class="mono">
+            <div class="label" style="margin-top:6px">PV Temporários</div>
+            <input id="hp-temp" type="number" class="mono">
+          </div>
+          <div class="subpanel">
+            <div class="label">Dados de Vida</div>
+            <input id="hit-dice" type="text" class="mono" placeholder="1d8">
+            <div class="label" style="margin-top:6px">Testes contra a Morte</div>
+            <div class="death">
+              <div class="section">
+                <div class="label">Sucessos</div>
+                <label><input type="checkbox"> 1</label>
+                <label><input type="checkbox"> 2</label>
+                <label><input type="checkbox"> 3</label>
+              </div>
+              <div class="section">
+                <div class="label">Fracassos</div>
+                <label><input type="checkbox"> 1</label>
+                <label><input type="checkbox"> 2</label>
+                <label><input type="checkbox"> 3</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="label" style="margin-bottom:4px">Ataques & Conjuração</div>
+          <table>
+            <thead><tr><th>Nome</th><th>Bônus</th><th>Dano/Tipo</th><th>Alcance/Propr.</th></tr></thead>
+            <tbody id="attacks"></tbody>
+          </table>
+          <button type="button" class="btn alt" style="margin-top:6px; padding:6px 10px" onclick="addAttack()">+ Ataque</button>
+          <div class="section" style="margin-top:6px"><div class="label">Anotações</div><textarea id="attack-notes" placeholder="Foco arcano, componentes, slots, observações..."></textarea></div>
+        </div>
+
+        <div class="panel">
+          <div class="label">Equipamento</div>
+          <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:6px">
+            <div class="section"><div class="label">PP</div><input type="number" class="mono"></div>
+            <div class="section"><div class="label">PO</div><input type="number" class="mono"></div>
+            <div class="section"><div class="label">PE</div><input type="number" class="mono"></div>
+            <div class="section"><div class="label">PC</div><input type="number" class="mono"></div>
+            <div class="section"><div class="label">PB</div><input type="number" class="mono"></div>
+          </div>
+          <textarea id="equipment" style="margin-top:6px" placeholder="Armaduras, armas, kits, itens..."></textarea>
+        </div>
+      </div>
+
+      <!-- COLUNA 3 -->
+      <div class="col3">
+        <div class="panel">
+          <div class="label">Traços de Personalidade</div>
+          <textarea id="traits"></textarea>
+          <div class="label" style="margin-top:6px">Ideais</div>
+          <textarea id="ideals"></textarea>
+          <div class="label" style="margin-top:6px">Vínculos</div>
+          <textarea id="bonds"></textarea>
+          <div class="label" style="margin-top:6px">Defeitos</div>
+          <textarea id="flaws"></textarea>
+        </div>
+        <div class="panel">
+          <div class="label">Características & Talentos</div>
+          <textarea id="features" style="min-height:150px"></textarea>
+        </div>
+        <div class="panel">
+          <div class="label">História & Aparência</div>
+          <textarea id="backstory" style="min-height:140px"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÁGINA 2: CONJURAÇÃO COMPLETA -->
+  <section class="page">
+    <div class="banner">
+      <div class="name"><label>Classe Conjuradora</label><input id="spell-class" type="text" placeholder="ex.: Mago, Clérigo, Bardo"></div>
+      <div class="brand" style="min-width:420px">
+        <div class="section" style="display:grid; grid-template-columns: repeat(3,1fr); gap:8px; background:#eef2f7">
+          <div><div class="label">Habilidade de Conjuração</div><input id="spell-abi" type="text" placeholder="Int/Sab/Car"></div>
+          <div><div class="label">CD de Resistência de Magia</div><input id="spell-dc" type="number" class="mono"></div>
+          <div><div class="label">Bônus de Ataque de Magia</div><input id="spell-atk" type="number" class="mono"></div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="spells-grid3" id="spells-grid"></div>
+  </section>
+
+  <!-- PÁGINA 3: CARACTERÍSTICAS / ALIADOS / ANOTAÇÕES -->
+  <section class="page">
+    <div class="banner">
+      <div class="name"><label>Características, Aliados & Notas</label></div>
+      <div class="brand"><div class="slot">MOLDURA SVG (pendente)</div></div>
+    </div>
+
+    <div class="cols-2">
+      <div class="panel"><div class="label">Características e Traços</div><textarea id="features-2" style="min-height:220mm"></textarea></div>
+      <div class="panel">
+        <div class="label">Aliados & Organizações</div><textarea id="allies" style="min-height:80mm"></textarea>
+        <div class="label" style="margin-top:6px">Tesouros</div><textarea id="treasure" style="min-height:60mm"></textarea>
+        <div class="label" style="margin-top:6px">Anotações</div><textarea id="notes" style="min-height:60mm"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

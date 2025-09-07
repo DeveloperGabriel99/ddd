@@ -1,0 +1,119 @@
+:root{
+  --ink:#111; --muted:#6b7280; --line:#111; --bg:#fff; --accent:#0f172a;
+  --hair:#e5e7eb; --panel:#fafafa; --soft:#f5f6f8;
+}
+@media print{
+  @page{ size:A4; margin:8mm; }
+  body{ background:#fff; }
+  .controls{ display:none !important; }
+  .page{ box-shadow:none; }
+  .panel, .section, .abilityV, .saves, .skills{ break-inside:avoid; page-break-inside:avoid; }
+}
+*{ box-sizing:border-box }
+body{ margin:0; font:11px/1.25 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--ink); background:#f1f5f9 }
+
+.controls{ position:sticky; top:0; z-index:10; display:flex; gap:10px; justify-content:center; padding:10px; background:linear-gradient(#0b0b0b,#222); border-bottom:1px solid #000 }
+.btn{ appearance:none; border:1px solid #000; background:#111; color:#fff; padding:8px 12px; border-radius:999px; font-weight:700; cursor:pointer }
+.btn.alt{ background:#fff; color:#111 }
+
+.page{ width:210mm; height:297mm; margin:12px auto; padding:10px; background:#fff; box-shadow:0 10px 32px rgba(0,0,0,.08); display:grid; grid-template-rows:auto 1fr; gap:8px }
+
+/* Banner superior (logo opcional) */
+.banner{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap:8px; border:1.5px solid var(--line); padding:8px; }
+.banner .name{ display:flex; gap:6px; align-items:center }
+.name label{ font-size:9px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted) }
+.name input{ width:280px; border:1px solid var(--hair); padding:6px; border-radius:4px; font:inherit }
+.brand{ display:flex; align-items:center; gap:8px }
+.brand .slot{ width:180px; height:34px; border:1.5px dashed var(--hair); display:grid; place-items:center; font-size:10px; color:#64748b }
+
+.grid{ display:grid; grid-template-columns: 0.92fr 1.1fr 1fr; gap:8px }
+
+.panel{ border:1.5px solid var(--line); background:var(--panel); border-radius:8px; padding:6px }
+.section{ border:1px solid var(--hair); background:#fff; border-radius:8px; padding:6px }
+.label{ font-size:9px; color:#52525b; text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px }
+
+/* Coluna 1 - Atributos em pilha */
+.col1{ display:grid; grid-template-rows:auto auto 1fr auto auto; gap:8px }
+.abilitiesV{ display:grid; gap:8px }
+.abilityV{ display:grid; grid-template-columns: 52px 1fr 44px; align-items:center; gap:6px; border:1.5px solid var(--line); border-radius:10px; padding:6px; background:#fff }
+.scoreCircle{ width:52px; height:52px; border:2px solid var(--line); border-radius:999px; display:grid; place-items:center; font-weight:800; font-size:18px }
+.abilityV .title{ font-size:11px; font-weight:800; letter-spacing:.04em; }
+.modBox{ border:2px solid var(--line); border-radius:8px; padding:2px 0; text-align:center; font-weight:800; }
+
+.insp-prof{ display:grid; grid-template-columns: 1fr 1fr; gap:8px }
+.chip{ border:1.5px solid var(--line); border-radius:10px; padding:6px; background:#fff; text-align:center }
+.chip .circle{ width:40px; height:40px; border:1.8px solid var(--line); border-radius:999px; display:grid; place-items:center; margin:4px auto 0; font-weight:800 }
+
+.saves, .skills{ border:1.5px solid var(--line); border-radius:10px; padding:6px; background:#fff }
+.skillsList{ columns:2; column-gap:14px }
+.skill{ break-inside:avoid; display:flex; align-items:center; gap:6px; font-size:11px }
+.skill .val{ margin-left:auto; font-feature-settings:"tnum" on; font-variant-numeric:tabular-nums; }
+
+/* Coluna 2 - Combate */
+.col2{ display:grid; gap:8px }
+.top3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px }
+.top3 .circleBig{ width:56px; height:56px; border:2px solid var(--line); border-radius:999px; display:grid; place-items:center; margin:2px auto 0; font-weight:900 }
+
+.hp-saves{ display:grid; grid-template-columns: 1fr 1fr; gap:8px }
+.subpanel{ border:1px solid var(--hair); border-radius:8px; padding:6px; background:#fff }
+.death{ display:grid; grid-template-columns:1fr 1fr; gap:8px }
+
+table{ width:100%; border-collapse:collapse }
+th,td{ border:1px solid var(--hair); padding:6px; font-size:11px; vertical-align:top }
+th{ background:var(--soft); text-transform:uppercase; letter-spacing:.04em; }
+
+/* Coluna 3 - Textos longos */
+.col3{ display:grid; gap:8px }
+textarea{ width:100%; min-height:72px; border:1px solid var(--hair); border-radius:6px; padding:6px; font:inherit; background:#fff; resize:vertical }
+
+/* Tipografia/ajustes visuais finos */
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace }
+
+/* Página 2/3 */
+.page-title{ font-weight:900; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin:0 0 4px }
+.spell-head{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px }
+.spell-cols{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px }
+.slotgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6px }
+.cols-2{ display:grid; grid-template-columns:1fr 1fr; gap:8px }
+
+/* Responsivo: Mobile/Tablet */
+@media (max-width: 1024px){
+  .page{ width:100%; height:auto; margin:0; padding:8px; box-shadow:none; }
+  .grid{ grid-template-columns:1fr; }
+  .cols-2{ grid-template-columns:1fr; }
+  .banner{ grid-template-columns:1fr; }
+  .brand{ justify-content:center; }
+  .brand .slot{ width:100%; height:28px; }
+  .skillsList{ columns:1; }
+  .spells-grid3{ grid-template-columns:1fr; }
+  .spell-card{ height:auto; min-height:0; }
+  .dots{ grid-template-rows: repeat(14, auto); }
+  .panel{ overflow-x:auto; }
+}
+@media (min-width:600px) and (max-width:1024px){
+  .spells-grid3{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 600px){
+  body{ font-size:13px; line-height:1.35; }
+  input, textarea, select{ font-size:13px; }
+  .abilityV{ grid-template-columns:44px 1fr 40px; }
+  .scoreCircle{ width:44px; height:44px; font-size:16px }
+  .top3 .circleBig{ width:56px; height:56px }
+  .chip .circle{ width:36px; height:36px }
+  table{ font-size:10px }
+}
+
+/* Spells page specific */
+.spells-grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:8px }
+.spell-card{ border:1.6px solid var(--line); border-radius:8px; background:#fff; padding:6px; display:flex; flex-direction:column; gap:6px; height:260mm; }
+.spell-head2{ display:grid; grid-template-columns: auto 1fr; gap:6px; align-items:center; }
+.lv-badge{ display:grid; place-items:center; font-weight:900; width:26px; height:26px; border:1.6px solid var(--line); border-radius:6px; background:var(--soft); font-size:13px }
+.pill2{ border:1.4px solid var(--line); border-radius:10px; padding:4px; display:grid; grid-template-columns: 1fr 1fr; gap:4px; background:#fafafa }
+.pill2 .mini .label{ font-size:8px; }
+.spell-title{ border:1.4px solid var(--line); border-radius:8px; padding:4px; background:#f9fafb }
+.dots{ flex:1; display:grid; grid-template-rows: repeat(14,1fr); gap:4px; margin-top:4px }
+.dots .row{ display:grid; grid-template-columns: 12px 1fr; align-items:center; gap:4px }
+.dot{ width:8px; height:8px; border:1.4px solid var(--line); border-radius:999px }
+.dots input{ width:100%; border:1px solid var(--hair); border-radius:4px; padding:4px; font:inherit; font-size:10.5px }
+
+
